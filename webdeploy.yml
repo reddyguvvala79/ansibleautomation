@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  tasks:
+  - include_role:
+       name: createawsvms
+  - include_role:
+       name: sshwait
+  - include_role:
+       name: addhosts
+  - include_role:
+       name: nginxinc.nginx
+- hosts: webinstances
+  tasks:
+  - include_role:
+       name: webserver
+- hosts: localhost
+  tasks:
+  - include_role:
+       name: createlb

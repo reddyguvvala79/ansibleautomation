@@ -1,0 +1,4 @@
+- name: vm tasks
+  include_tasks: sg.yml
+- name: vm tasks
+  include_tasks: vm.yml

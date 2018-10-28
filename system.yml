@@ -1,0 +1,45 @@
+---
+- hosts: localhost
+  tasks:
+  - name: Create a data vg
+    lvg:
+      vg: datavg
+      pvs: /dev/xvdf,/dev/xvdg
+      state: present
+    ignore_errors: true
+  - name: Create a logical volume of 512m
+    lvol:
+      vg: datavg
+      lv: datavol
+      size: 100%FREE
+      state: present
+    ignore_errors: true
+  - name: Create a ext4 filesystem on /dev/sdb1 and check disk blocks
+    filesystem:
+      fstype: ext4
+      dev: /dev/datavg/datavol
+  - file:
+      path: /data
+      state: directory
+      mode: 0755
+  - name: Mount up device by label
+    mount:
+      path: /data
+      src: /dev/datavg/datavol
+      fstype: ext4
+      state: present
+  - name: Ensure group "somegroup" exists
+    group:
+      name: datagroup
+      state: present
+  - name: Add the user 'johnd' with a specific uid and a primary group of 'admin'
+    user:
+      name: datauser
+      comment: John Doe
+      group: datagroup
+  - file:
+      path: /data
+      owner: datauser
+      group: datagroup
+      state: directory
+

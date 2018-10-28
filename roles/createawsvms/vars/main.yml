@@ -1,0 +1,16 @@
+---
+vpcid: vpc-0aa349c74f89d0044 
+subnetid:
+  - subnet-047851d209627f7f8
+  - subnet-00624402de859b36b 
+region: us-east-1 
+instancetype: t2.micro 
+sgname: webinstsg
+kpname: webkey
+myami: ami-0922553b7b0369273
+vmname: 
+  - webservers-1
+  - webservers-2
+users:
+  - username: test1
+  - username: test2

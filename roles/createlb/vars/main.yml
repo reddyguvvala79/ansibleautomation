@@ -1,0 +1,7 @@
+---
+vpcid: vpc-0aa349c74f89d0044
+subnetid: 
+  - subnet-047851d209627f7f8
+  - subnet-00624402de859b36b
+region: us-east-1
+sgname: weblbsg
